@@ -1,25 +1,45 @@
-import logo from './logo.svg';
+// src/App.js
+import React, { useState } from 'react';
+import TodoForm from './components/TodoForm';
+import TodoList from './components/TodoList';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [metas, setMetas] = useState(['Aprender CSS']);
+
+  const agregarMeta = (nuevaMeta) => {
+    setMetas([...metas, nuevaMeta]);
+  };
+
+  const marcarComoCompletada = (index) => {
+    const nuevasMetas = [...metas];
+    nuevasMetas[index] = `✔️ ${nuevasMetas[index]}`;
+    setMetas(nuevasMetas);
+  };
+
+  const eliminarMeta = (index) => {
+    const nuevasMetas = [...metas];
+    nuevasMetas.splice(index, 1);
+    setMetas(nuevasMetas);
+  };
+
+  const metasCompletadas = metas.filter((meta) => meta.startsWith('✔️')).length;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <div className="contenedor">
+      <h1 className="titulo">Mis Metas</h1>
+      <TodoForm agregarMeta={agregarMeta} />
+      <div className="opciones">
+        <p className="completada">
+          Completadas: <span>{metasCompletadas}</span>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <p className="pendiente">
+          Pendientes: <span>{metas.length - metasCompletadas}</span>
+        </p>
+      </div>
+      <TodoList metas={metas} marcarComoCompletada={marcarComoCompletada} eliminarMeta={eliminarMeta} />
     </div>
   );
-}
+};
 
 export default App;

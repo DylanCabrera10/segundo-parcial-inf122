@@ -1,0 +1,33 @@
+:root {
+  --lg: 160px;         
+  --green: #1C9675; 
+  
+}
+    
+.form {
+    display: flex;
+  }
+  
+  .form .meta {
+    background-color: white;
+    color: #D9D9D9;
+    border: none;
+    border-radius: 10px 0px 0px 10px;
+    padding: 1.5rem 7rem;
+    font-size: 2rem;
+    flex: 2;
+  }
+  
+  .form .agregar {
+    background-color: var(--green);
+    border: none;
+    border-radius: 0px 10px 10px 0px;
+    padding: 1.6rem;
+    color: white;
+    font-size: 2rem;
+  }
+  
+  .form .agregar:hover {
+    cursor: pointer;
+  }
+  
